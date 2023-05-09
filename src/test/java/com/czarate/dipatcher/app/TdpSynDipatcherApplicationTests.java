@@ -1,0 +1,13 @@
+package com.czarate.dipatcher.app;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class TdpSynDipatcherApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
