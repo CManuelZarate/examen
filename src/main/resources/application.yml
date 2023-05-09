@@ -1,0 +1,8 @@
+
+spring:
+  application:
+    name: tdpsyncdispatcher
+  main:
+    allow-bean-definition-overriding: true
+  config:
+    import: optional:configserver:${CONFIG_SERVER_URL:http://localhost:8888/}
