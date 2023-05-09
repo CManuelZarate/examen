@@ -17,14 +17,13 @@ public class ProducerService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProducerService.class);
 	
     //creando un objeto que puede enviar múltiples mensajes de tipo String a través de un flujo reactiva.
-   //private final Sinks.Many<Message<String>> many = Sinks.many().unicast().onBackpressureBuffer();
 	private final Sinks.Many<Message<Object>> many = Sinks.many().unicast().onBackpressureBuffer();
 	
    @Bean
    public Supplier<Flux<Message<Object>>> supply() {
 	//public Supplier<Flux<Message<String>>> supply() {
        return () -> many.asFlux()
-               .doOnNext(m -> LOGGER.info("Manually sending message {}", m))
+               //.doOnNext(m -> LOGGER.info("Manually sending message {}", m))
                .doOnError(t -> LOGGER.error("Error encountered", t));
    }
    
@@ -33,10 +32,4 @@ public class ProducerService {
        many.emitNext(new GenericMessage<>(message), Sinks.EmitFailureHandler.FAIL_FAST);
    }
    
-   /*
-   public void emitNext2(User user) {
-   	//Message<User> message = MessageBuilder.withPayload(user).build();
-       many.emitNext(new GenericMessage<>(user), Sinks.EmitFailureHandler.FAIL_FAST);
-   }
-   */
 }

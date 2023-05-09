@@ -32,15 +32,11 @@ public class ConsumerService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ConsumerService.class);
 
     @Bean
-    //public Consumer<Flux<Message<User>>> consume() {	
     public Consumer<Flux<Message<String>>> consume() {
     	try {
-    	//Consumer<Flux<Message<User>>> c = flux -> flux.subscribe(message -> { LOGGER.info("New message received: '{}'", message.getPayload());u = message.getPayload(); } );
-    	//System.out.println("el dinero es :"+ u.getDinero());
-    	//LOGGER.info("New message received: '{}'", u.getDinero());
-    	//return flux -> flux.subscribe(message -> { LOGGER.info("New message received: '{}'", message.getPayload()); } );
+    	
         //return flux -> flux.subscribe(message -> { LOGGER.info("New message received: '{}'", message.getPayload());guardarObjetos(message.getPayload()); } );
-    	return flux -> flux.subscribe(message -> { LOGGER.info("New message received: '{}'", message.getPayload());try {
+    	return flux -> flux.subscribe(message -> { /*LOGGER.info("New message received: '{}'", message.getPayload());*/try {
 			guardarObjetos(message.getPayload());
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
@@ -56,9 +52,6 @@ public class ConsumerService {
     	ObjectMapper objectMapper = new ObjectMapper();
     	//List<Example> arrExamples = (List<Example>) objectMapper.readValue(jsonData, ListExample.class);
     	 List<Example> arrExamples = objectMapper.readValue(jsonData, new TypeReference<List<Example>>() {});
-    	System.out.println(arrExamples);
-    	System.out.println(arrExamples.size());
-    	System.out.println(arrExamples.get(0));
     	exampleRepository.guardarObjetos(arrExamples);
     	
     }

@@ -23,7 +23,5 @@ public class ExampleRepository {
     		mongoTemplate.save(e);
     	}
     	
-    	//
-        //mongoTemplate.saveAll(objetosEnDB);
 	}
 }
